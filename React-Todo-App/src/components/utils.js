@@ -33,7 +33,6 @@ export async function DeleteFromDataBase(id, token) {
 
 ///    for update from database
 export async function updateDataBase(item, token) {
-  console.log(item);
   const updateItems = item;
   const updateTask = await fetch(
     `https://mern-todo-app-roan.vercel.app/api/v1/tasks/${item.id}`,
