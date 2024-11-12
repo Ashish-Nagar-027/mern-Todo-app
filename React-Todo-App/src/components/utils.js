@@ -1,5 +1,5 @@
 export function getUrl(authUrl) {
-  let url = "https://mern-todo-app-roan.vercel.app/api/v1/tasks"
+  let url = "https://mern-todo-app-roan.vercel.app/api/v1"
   if (window.location.href.includes("http://localhost")) {
     if (authUrl) {
       url = "http://localhost:3000/api/v1/auth"
