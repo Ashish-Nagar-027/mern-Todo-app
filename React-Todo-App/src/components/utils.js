@@ -1,7 +1,20 @@
+export function getUrl(authUrl) {
+  let url = "https://mern-todo-app-roan.vercel.app/api/v1/tasks"
+  if (window.location.href.includes("http://localhost")) {
+    if (authUrl) {
+      url = "http://localhost:3000/api/v1/auth"
+    } else {
+      url = "http://localhost:3000/api/v1/tasks"
+    }
+  }
+  return url
+}
+
+
 // for adding in database
 export async function addTodoInDataBase(data, token) {
   const addTask = await fetch(
-    "https://mern-todo-app-roan.vercel.app/api/v1/tasks",
+    getUrl(),
     {
       method: "POST",
       headers: {
@@ -19,7 +32,7 @@ export async function addTodoInDataBase(data, token) {
 ///    for deleting from database
 export async function DeleteFromDataBase(id, token) {
   const addTask = await fetch(
-    `https://mern-todo-app-roan.vercel.app/api/v1/tasks/${id}`,
+    `${getUrl()}/${id}`,
     {
       method: "DELETE",
       headers: {
@@ -35,7 +48,7 @@ export async function DeleteFromDataBase(id, token) {
 export async function updateDataBase(item, token) {
   const updateItems = item;
   const updateTask = await fetch(
-    `https://mern-todo-app-roan.vercel.app/api/v1/tasks/${item.id}`,
+    `${getUrl()}/${item.id}`,
     {
       method: "PATCH",
       headers: {

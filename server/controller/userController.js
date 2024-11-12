@@ -2,6 +2,7 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+
 /*
 =======================================
       authentication Register user
@@ -52,6 +53,7 @@ const register = async (req, res) => {
 */
 const login = async (req, res) => {
   const { email, password } = req.body;
+  console.log('request body ', req.body)
   if (!email || !password) {
     res.status(400).send("please fill all fields");
     return;
@@ -90,7 +92,10 @@ const login = async (req, res) => {
   });
 };
 
+
+
 module.exports = {
   register,
   login,
+
 };

@@ -1,6 +1,11 @@
 import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../context/AuthContext";
+import { getUrl } from "./utils";
+import GoogleAuthButton from "./GoogleAuthButton";
+
+let url = getUrl(true)
+
 
 const RegisterPage = () => {
   const { dispatch } = useContext(AuthContext);
@@ -34,7 +39,7 @@ const RegisterPage = () => {
     setLoading(true);
 
     const response = await fetch(
-      "https://mern-todo-app-roan.vercel.app/api/v1/auth/register",
+      url + '/register',
       {
         method: "POST",
         body: JSON.stringify(registerFormData),
@@ -109,6 +114,14 @@ const RegisterPage = () => {
             Log in
           </button>
         )}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: 'auto'
+        }}>
+          <GoogleAuthButton />
+        </div>
       </form>
     </>
   );

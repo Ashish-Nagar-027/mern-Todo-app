@@ -1,9 +1,13 @@
 import React from "react";
 import Form from "./Form";
 import TodoContainer from "./TodoContainer";
-import { addTodoInDataBase, DeleteFromDataBase, updateDataBase } from "./utils";
+import { addTodoInDataBase, DeleteFromDataBase, getUrl, updateDataBase } from "./utils";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+
+
+
+
 
 const HomeContainer = () => {
   const { user } = useContext(AuthContext);
@@ -15,6 +19,8 @@ const HomeContainer = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  let url = getUrl()
+
 
   /// ==============================
   //       crud functions
@@ -87,7 +93,7 @@ const HomeContainer = () => {
   useEffect(() => {
     async function fetchData() {
       const data = await fetch(
-        "https://mern-todo-app-roan.vercel.app/api/v1/tasks",
+        url,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,

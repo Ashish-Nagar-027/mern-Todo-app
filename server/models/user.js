@@ -9,9 +9,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "name is required"],
   },
+  googleId: {
+    type: String,
+    required: false
+  },
   password: {
     type: String,
-    required: [true, "name is required"],
+    required: [false],
   },
 });
 

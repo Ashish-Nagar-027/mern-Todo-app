@@ -8,6 +8,7 @@ import Login from "./pages/LoginPage";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { Navigate } from "react-router-dom";
+import AuthSuccess from "./pages/AuthSuccess";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -25,6 +26,7 @@ function App() {
           element={user ? <Navigate to="/" /> : <RegisterPage />}
         />
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        <Route path="/auth-success" element={<AuthSuccess />} />
       </Routes>
     </div>
   );

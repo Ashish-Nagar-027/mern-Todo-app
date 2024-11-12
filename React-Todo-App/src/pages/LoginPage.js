@@ -1,6 +1,10 @@
 import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../context/AuthContext";
+import { getUrl } from "../components/utils";
+import GoogleAuthButton from "../components/GoogleAuthButton";
+
+let url = getUrl(true)
 
 const Login = () => {
   const { dispatch } = useContext(AuthContext);
@@ -29,7 +33,7 @@ const Login = () => {
     setLoading(true);
 
     const response = await fetch(
-      "https://mern-todo-app-roan.vercel.app/api/v1/auth/login",
+      url + '/login',
       {
         method: "POST",
         body: JSON.stringify(registerFormData),
@@ -52,14 +56,14 @@ const Login = () => {
       dispatch({ type: "LOGIN", payload: jsonData });
       localStorage.setItem("userToken", JSON.stringify(jsonData));
       setLoading(false);
-      console.log(typeof jsonData);
+
     }
   };
 
   return (
     <>
       <h2 className="form-text">Register first to use the app</h2>
-      <form className="register" onSubmit={submitFormHandler}>
+      <form className="register" onSubmit={(e) => e.preventDefault()}>
         <h3>Login Here</h3>
 
         <div>
@@ -92,7 +96,16 @@ const Login = () => {
           <button className="btn" onClick={submitFormHandler}>
             Log in
           </button>
+
         )}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: 'auto'
+        }}>
+          <GoogleAuthButton />
+        </div>
       </form>
     </>
   );
