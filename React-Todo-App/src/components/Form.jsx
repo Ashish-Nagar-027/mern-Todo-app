@@ -15,7 +15,7 @@ const Form = ({
   };
 
   return (
-    <form onClick={(e) => formhandler(e)}>
+    <form onSubmit={(e) => formhandler(e)}>
       <div className="input-container">
         <input
           type="text"
@@ -26,11 +26,6 @@ const Form = ({
         <input
           type="text"
           value={inputValue}
-          onKeyPress={(event) => {
-            if (event.key === "Enter") {
-              addTask(editId);
-            }
-          }}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Add Task . . ."
         ></input>
